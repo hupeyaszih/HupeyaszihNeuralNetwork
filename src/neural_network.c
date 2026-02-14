@@ -1,3 +1,6 @@
+// SPDX-License-Identifier: AGPL-3.0-only
+// Copyright (C) 2026 Poyraz Bakırtaş
+
 #include "neural_network.h"
 #include "globals.h"
 #include "nn_errors.h"
