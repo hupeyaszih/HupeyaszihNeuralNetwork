@@ -101,7 +101,6 @@ NeuralNetwork* init_neural_network() {
 
 void update_neural_network(NeuralNetwork* network, int t) {
     LOG_PRINT("update");
-    LOG_PRINT_INT(t);
 }
 
 int new_edge(EdgeSoA* edgeSoA, int max_edge_count, int from_id, int target_id, float weight, int delay) {
