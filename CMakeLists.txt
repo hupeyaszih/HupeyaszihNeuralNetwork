@@ -8,6 +8,7 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 add_executable(NeuralNetwork
     src/main.c
+    src/neural_network.c
 )
 
 target_include_directories(NeuralNetwork
