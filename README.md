@@ -1,5 +1,5 @@
 # Hupeyaszih Neural Network (HNN)
-Graph-based spiking neural network simulator with dopamine-modulated plasticity written in C.
+Graph-based spiking neural network engine with dopamine-modulated plasticity written in C.
 
 ⚠️This project is under active development.
 
@@ -26,8 +26,9 @@ Currently constructs configurable neural graphs with explicit neuron and synapse
 ```bash
     git clone https://github.com/hupeyaszih/HupeyaszihNeuralNetwork.git
     cd HupeyaszihNeuralNetwork
+    mkdir build
     cd build
-    cmake build ..
+    cmake ..
     cmake --build .
 
 ```
