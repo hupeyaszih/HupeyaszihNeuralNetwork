@@ -20,6 +20,11 @@ struct EdgeSoA {
     int edge_count;
 };
 struct NodeSoA {
+    float* membrane_potential;
+    float* threshold;
+    int* last_spike_time;
+    int* last_update_time;
+
     int* edge_start_idx;
     int* edge_count;
 
@@ -43,6 +48,11 @@ NeuralNetwork* init_neural_network() {
         if(nodeSoA == NULL){error = NN_FAILED_TO_CREATE_NODE_SOA;break;}
         nodeSoA->node_count = 0;
 
+        nodeSoA->membrane_potential = NULL;
+        nodeSoA->threshold = NULL;
+        nodeSoA->last_spike_time = NULL;
+        nodeSoA->last_update_time = NULL;
+
         nodeSoA->edge_start_idx = NULL;
         nodeSoA->edge_count = NULL;
 
@@ -50,6 +60,14 @@ NeuralNetwork* init_neural_network() {
         if(nodeSoA->edge_start_idx == NULL) {error = NN_FAILED_TO_CREATE_NODE_SOA;break;}
         nodeSoA->edge_count = malloc(sizeof(int)*NODE_COUNT);
         if(nodeSoA->edge_count == NULL) {error = NN_FAILED_TO_CREATE_NODE_SOA;break;}
+        nodeSoA->membrane_potential = malloc(sizeof(float)*NODE_COUNT);
+        if(nodeSoA->membrane_potential == NULL) {error = NN_FAILED_TO_CREATE_NODE_SOA;break;}
+        nodeSoA->threshold = malloc(sizeof(int)*NODE_COUNT);
+        if(nodeSoA->threshold == NULL) {error = NN_FAILED_TO_CREATE_NODE_SOA;break;}
+        nodeSoA->last_update_time = malloc(sizeof(int)*NODE_COUNT);
+        if(nodeSoA->last_update_time == NULL) {error = NN_FAILED_TO_CREATE_NODE_SOA;break;}
+        nodeSoA->last_spike_time = malloc(sizeof(int)*NODE_COUNT);
+        if(nodeSoA->last_spike_time == NULL) {error = NN_FAILED_TO_CREATE_NODE_SOA;break;}
 
         // Create Nodes
         {
@@ -103,7 +121,8 @@ NeuralNetwork* init_neural_network() {
 }
 
 void update_neural_network(NeuralNetwork* network, int t) {
-    LOG_PRINT("update");
+    // Simple Update - I'll add event-based update 
+    LOG_PRINT("UPDATE");
 }
 
 int new_edge(EdgeSoA* edgeSoA, int max_edge_count, int from_id, int target_id, float weight, int delay) {
@@ -142,6 +161,10 @@ int delete_edgeSoA(EdgeSoA* edgeSoA) {
 int delete_nodeSoA(NodeSoA* nodeSoA) {
     if(nodeSoA->edge_count){free(nodeSoA->edge_count); nodeSoA->edge_count = NULL;}
     if(nodeSoA->edge_start_idx){free(nodeSoA->edge_start_idx);nodeSoA->edge_start_idx = NULL;}
+    if(nodeSoA->membrane_potential){free(nodeSoA->membrane_potential);nodeSoA->membrane_potential = NULL;}
+    if(nodeSoA->threshold){free(nodeSoA->threshold);nodeSoA->threshold = NULL;}
+    if(nodeSoA->last_spike_time){free(nodeSoA->last_spike_time);nodeSoA->last_spike_time = NULL;}
+    if(nodeSoA->last_update_time){free(nodeSoA->last_update_time);nodeSoA->last_update_time = NULL;}
     if(nodeSoA)free(nodeSoA);
     return NN_SUCCESS;
 }
