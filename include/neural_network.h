@@ -4,8 +4,6 @@
 #ifndef NEURAL_NETWORK_H
 #define NEURAL_NETWORK_H
 
-#include "globals.h"
-
 typedef struct NeuralNetwork NeuralNetwork;
 typedef struct EdgeSoA EdgeSoA;
 typedef struct NodeSoA NodeSoA;

@@ -177,3 +177,25 @@ NeuralNetwork* delete_neural_network(NeuralNetwork* neural_network) {
     free(neural_network);
     return NULL;
 }
+
+/// GETTERS
+
+static inline float get_membrane_potential(NodeSoA nodeSoA,int index) {return nodeSoA.membrane_potential[index];}
+static inline float get_threshold(NodeSoA nodeSoA,int index) {return nodeSoA.threshold[index];}
+
+static inline int get_last_spike_time(NodeSoA nodeSoA,int index) {return nodeSoA.last_spike_time[index];}
+static inline int get_last_update_time(NodeSoA nodeSoA,int index) {return nodeSoA.last_update_time[index];}
+
+static inline int get_edge_start_idx(NodeSoA nodeSoA,int index) {return nodeSoA.edge_start_idx[index];}
+static inline int get_edge_count(NodeSoA nodeSoA,int index) {return nodeSoA.edge_count[index];}
+
+/// SETTERS
+
+static inline void set_membrane_potential(NodeSoA nodeSoA,int index, float value) {nodeSoA.membrane_potential[index] = value;}
+static inline void set_threshold(NodeSoA nodeSoA,int index, float value) {nodeSoA.threshold[index] = value;}
+
+static inline void set_last_spike_time(NodeSoA nodeSoA,int index, int value) {nodeSoA.last_spike_time[index] = value;}
+static inline void set_last_update_time(NodeSoA nodeSoA,int index, int value) {nodeSoA.last_update_time[index] = value;}
+
+//static inline void set_edge_start_idx(NodeSoA nodeSoA,int index, int value) {nodeSoA.edge_start_idx[index] = value;}
+//static inline void set_edge_count(NodeSoA nodeSoA,int index, int value) {nodeSoA.edge_count[index] = value;}
