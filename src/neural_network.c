@@ -178,24 +178,34 @@ NeuralNetwork* delete_neural_network(NeuralNetwork* neural_network) {
     return NULL;
 }
 
-/// GETTERS
+/// NODE GETTERS
+static inline float get_membrane_potential(NodeSoA* nodeSoA,int index) {return nodeSoA->membrane_potential[index];}
+static inline float get_threshold(NodeSoA* nodeSoA,int index) {return nodeSoA->threshold[index];}
 
-static inline float get_membrane_potential(NodeSoA nodeSoA,int index) {return nodeSoA.membrane_potential[index];}
-static inline float get_threshold(NodeSoA nodeSoA,int index) {return nodeSoA.threshold[index];}
+static inline int get_last_spike_time(NodeSoA* nodeSoA,int index) {return nodeSoA->last_spike_time[index];}
+static inline int get_last_update_time(NodeSoA* nodeSoA,int index) {return nodeSoA->last_update_time[index];}
 
-static inline int get_last_spike_time(NodeSoA nodeSoA,int index) {return nodeSoA.last_spike_time[index];}
-static inline int get_last_update_time(NodeSoA nodeSoA,int index) {return nodeSoA.last_update_time[index];}
+static inline int get_edge_start_idx(NodeSoA* nodeSoA,int index) {return nodeSoA->edge_start_idx[index];}
+static inline int get_edge_count(NodeSoA* nodeSoA,int index) {return nodeSoA->edge_count[index];}
 
-static inline int get_edge_start_idx(NodeSoA nodeSoA,int index) {return nodeSoA.edge_start_idx[index];}
-static inline int get_edge_count(NodeSoA nodeSoA,int index) {return nodeSoA.edge_count[index];}
+/// NODE SETTERS
+static inline void set_membrane_potential(NodeSoA* nodeSoA,int index, float value) {nodeSoA->membrane_potential[index] = value;}
+static inline void set_threshold(NodeSoA* nodeSoA,int index, float value) {nodeSoA->threshold[index] = value;}
 
-/// SETTERS
-
-static inline void set_membrane_potential(NodeSoA nodeSoA,int index, float value) {nodeSoA.membrane_potential[index] = value;}
-static inline void set_threshold(NodeSoA nodeSoA,int index, float value) {nodeSoA.threshold[index] = value;}
-
-static inline void set_last_spike_time(NodeSoA nodeSoA,int index, int value) {nodeSoA.last_spike_time[index] = value;}
-static inline void set_last_update_time(NodeSoA nodeSoA,int index, int value) {nodeSoA.last_update_time[index] = value;}
+static inline void set_last_spike_time(NodeSoA* nodeSoA,int index, int value) {nodeSoA->last_spike_time[index] = value;}
+static inline void set_last_update_time(NodeSoA* nodeSoA,int index, int value) {nodeSoA->last_update_time[index] = value;}
 
 //static inline void set_edge_start_idx(NodeSoA nodeSoA,int index, int value) {nodeSoA.edge_start_idx[index] = value;}
 //static inline void set_edge_count(NodeSoA nodeSoA,int index, int value) {nodeSoA.edge_count[index] = value;}
+
+/// EDGE GETTERS
+static inline int get_from_id(EdgeSoA* edgeSoA, int index) {return edgeSoA->from_id[index];}
+static inline int get_target_id(EdgeSoA* edgeSoA, int index) {return edgeSoA->target_id[index];}
+static inline int get_weight(EdgeSoA* edgeSoA, int index) {return edgeSoA->weight[index];}
+static inline int get_delay(EdgeSoA* edgeSoA, int index) {return edgeSoA->delay[index];}
+
+/// EDGE SETTERS
+static inline void set_from_id(EdgeSoA* edgeSoA, int index, int value) {edgeSoA->from_id[index] = value;}
+static inline void set_target_id(EdgeSoA* edgeSoA, int index, int value) {edgeSoA->target_id[index] = value;}
+static inline void set_weight(EdgeSoA* edgeSoA, int index, int value) {edgeSoA->weight[index] = value;}
+static inline void set_delay(EdgeSoA* edgeSoA, int index, int value) {edgeSoA->delay[index] = value;}
