@@ -26,6 +26,7 @@ struct NodeSoA {
     int* last_update_time;
 
     int* edge_start_idx;
+    //int* input_edges; //I will add this
     int* edge_count;
 
     int node_count;
@@ -209,3 +210,8 @@ static inline void set_from_id(EdgeSoA* edgeSoA, int index, int value) {edgeSoA-
 static inline void set_target_id(EdgeSoA* edgeSoA, int index, int value) {edgeSoA->target_id[index] = value;}
 static inline void set_weight(EdgeSoA* edgeSoA, int index, int value) {edgeSoA->weight[index] = value;}
 static inline void set_delay(EdgeSoA* edgeSoA, int index, int value) {edgeSoA->delay[index] = value;}
+
+
+/// OTHER HELPER FUNCTIONS
+static inline int get_edge_id(NodeSoA* nodeSoA, int node_id, int edge) {return nodeSoA->edge_start_idx[node_id] + edge;}
+
