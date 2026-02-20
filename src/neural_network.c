@@ -2,6 +2,7 @@
 // Copyright (C) 2026 Poyraz Bakırtaş
 
 #include "neural_network.h"
+#include "nn_memory.h"
 #include "globals.h"
 #include "nn_errors.h"
 #include "nn_math.h"
@@ -10,6 +11,7 @@
 struct NeuralNetwork{
     EdgeSoA* edges;
     NodeSoA* nodes;
+    EventList* event_list;
 };
 struct EdgeSoA {
     int* from_id;
@@ -40,6 +42,7 @@ NeuralNetwork* init_neural_network() {
     NeuralNetwork* network = malloc(sizeof(NeuralNetwork));
     NodeSoA* nodeSoA = NULL;
     EdgeSoA* edgeSoA = NULL;
+    EventList* event_list = NULL;
     network->nodes = NULL;
     network->edges = NULL;
     do {
@@ -69,6 +72,9 @@ NeuralNetwork* init_neural_network() {
         if(nodeSoA->last_update_time == NULL) {error = NN_FAILED_TO_CREATE_NODE_SOA;break;}
         nodeSoA->last_spike_time = malloc(sizeof(int)*NODE_COUNT);
         if(nodeSoA->last_spike_time == NULL) {error = NN_FAILED_TO_CREATE_NODE_SOA;break;}
+
+        event_list = create_event_list(EVENT_LIST_CAPACITY);
+        if(!event_list) {error = NN_FAILED_TO_CREATE_EVENT_LIST; break;}
 
         // Create Nodes
         {

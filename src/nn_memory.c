@@ -23,7 +23,7 @@ int add_event(EventList* event_list, int target_time, int neuron_id) {
     return NN_SUCCESS;
 }
 int delete_event(EventList* event_list,int event_id) {
-    if(event_list >= event_list->size) return NN_FAILED_TO_DELETE_EVENT;
+    if(event_id >= event_list->size) return NN_FAILED_TO_DELETE_EVENT;
     event_list->time[event_id] = -1;
     event_list->neuron_id[event_id] = -1;
     event_list->done[event_id] = false;

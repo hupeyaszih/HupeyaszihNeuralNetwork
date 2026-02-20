@@ -5,6 +5,7 @@
 #define GLOBALS_H
 
 
+#define EVENT_LIST_CAPACITY 1000 // Just for test
 
 #define NODE_COUNT 100
 
