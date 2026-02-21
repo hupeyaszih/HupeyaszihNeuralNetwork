@@ -1,3 +1,6 @@
+// SPDX-License-Identifier: AGPL-3.0-only
+// Copyright (C) 2026 Poyraz Bakırtaş
+
 #ifndef NN_MEMORY_H
 #define NN_MEMORY_H
 
