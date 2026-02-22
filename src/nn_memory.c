@@ -16,6 +16,16 @@ struct EventList{
    size_t size;
 };
 
+struct TimeTable{
+    int size;
+    TimeWindow* time_windows;
+};
+
+struct TimeWindow{
+    int event_start_idx;
+    int target_time; // ex: t = 10, t = 9..
+    int event_count;
+};
 
 int add_event(EventList* event_list, int target_time, int neuron_id) {
     if(event_list->size+1 > event_list->capacity) return NN_ERR_EVENT_LIST_CAPACITY;
