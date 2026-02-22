@@ -16,8 +16,9 @@ struct NeuralNetwork{
 struct EdgeSoA {
     int* from_id;
     int* target_id;
-    float* weight;
     int* delay;
+
+    float* weight;
 
     int edge_count;
 };
