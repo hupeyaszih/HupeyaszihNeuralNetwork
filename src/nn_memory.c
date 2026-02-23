@@ -58,7 +58,6 @@ TimeTable* create_time_table(int capacity){
         time_table->time_windows[i].target_time = -1;
         time_table->time_windows[i].event_start_idx = -1;
         time_table->time_windows[i].event_count = 0;
-        time_table->time_windows[i].done = false;
     }
     return time_table;
 }
