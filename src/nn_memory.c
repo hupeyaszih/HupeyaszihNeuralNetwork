@@ -27,6 +27,46 @@ struct TimeWindow{
     int event_count;
 };
 
+
+///Time Table
+
+//Now can overwrite events onto time_table, we don't need to free them because we still need them (while simulation running)
+int clear_time_window(TimeTable* time_table,int time_window_id, int new_target_time){
+    time_table->time_windows[time_window_id].target_time = new_target_time;
+    return NN_SUCCESS;
+}
+
+int delete_time_table(TimeTable* time_table){
+    if(!time_table) return NN_NULL_POINTER;
+    if(time_table->time_windows){free(time_table->time_windows); time_table->time_windows = NULL;}
+
+    free(time_table);
+    time_table = NULL;
+    return NN_SUCCESS;
+}
+
+TimeTable* create_time_table(int capacity){
+    TimeTable* time_table = malloc(sizeof(TimeTable));
+    time_table->time_windows = malloc(sizeof(TimeWindow) * capacity);
+    
+    for(int i = 0;i < capacity;i++){
+        time_table->time_windows[i].target_time = -1;
+        time_table->time_windows[i].event_start_idx = -1;
+        time_table->time_windows[i].event_count = 0;
+    }
+    return time_table;
+}
+
+///Time Window
+int free_time_window(TimeWindow* time_window){
+    if(!time_window) return NN_NULL_POINTER;
+    free(time_window);
+    time_window = NULL;
+    return NN_SUCCESS;
+}
+
+
+///Event List
 int add_event(EventList* event_list, int target_time, int neuron_id) {
     if(event_list->size+1 > event_list->capacity) return NN_ERR_EVENT_LIST_CAPACITY;
     int id = event_list->size + 1;
